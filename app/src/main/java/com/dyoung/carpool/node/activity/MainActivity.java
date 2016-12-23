@@ -2,6 +2,7 @@ package com.dyoung.carpool.node.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -18,6 +19,7 @@ import com.dyoung.carpool.node.fragment.MineFragment;
 import com.dyoung.carpool.node.fragment.NodeListFragment;
 import com.dyoung.carpool.node.util.ToastUtil;
 import com.dyoung.carpool.node.view.CommonPopupWindow;
+import com.tencent.tinker.lib.tinker.TinkerInstaller;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -56,6 +58,8 @@ public class MainActivity extends BaseActivity {
         initView();
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_menu, menu);
@@ -66,7 +70,6 @@ public class MainActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
-
     }
 
     @Override
@@ -85,7 +88,8 @@ public class MainActivity extends BaseActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.search:
-
+                        TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed_7zip.apk");
+                        ToastUtil.show("load success");
                         break;
                     case R.id.add:
                         showPopupWindow(toolbar);

@@ -68,7 +68,7 @@ android {
         }
 
         release {
-            storeFile file("./carPoolNode.jks")
+            storeFile file("../carPoolNode.jks")
             storePassword "liuwang521"
             keyAlias "carPoolNode"
             keyPassword "liuwang521"
@@ -141,7 +141,7 @@ dependencies {
     compile 'com.orhanobut:logger:1.15'
 
     //可选，用于生成application类
-    provided('com.tencent.tinker:tinker-android-anno:1.7.5')
+//    provided('com.tencent.tinker:tinker-android-anno:1.7.5')
     //tinker的核心库
     compile('com.tencent.tinker:tinker-android-lib:1.7.5')
     compile "com.android.support:multidex:1.0.1"
@@ -163,7 +163,7 @@ def bakPath = file("${buildDir}/bakApk/")
  */
 ext {
     //for some reason, you may want to ignore tinkerBuild, such as instant run debug build?
-    tinkerEnabled = true
+    tinkerEnabled =false
 
     //for normal build
     //old apk file to build patch apk
@@ -174,7 +174,7 @@ ext {
     tinkerApplyResourcePath = "${bakPath}/app-debug-1018-17-32-47-R.txt"
 
     //only use for build all flavor, if not, just ignore this field
-    tinkerBuildFlavorDirectory = "${bakPath}/app-1018-17-32-47"
+    tinkerBuildFlavorDirectory = "${bakPath}/app-1223-15-43-20"
 }
 
 

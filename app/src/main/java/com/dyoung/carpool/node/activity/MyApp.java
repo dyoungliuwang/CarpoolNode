@@ -1,11 +1,14 @@
 package com.dyoung.carpool.node.activity;
 
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.StrictMode;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.dyoung.carpool.node.BuildConfig;
@@ -13,6 +16,7 @@ import com.dyoung.carpool.node.greendao.DBHelper;
 import com.dyoung.carpool.node.util.LogUtil;
 import com.dyoung.carpool.node.util.ProcessUtil;
 import com.orhanobut.logger.LogLevel;
+import com.tencent.tinker.lib.tinker.TinkerInstaller;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
@@ -45,6 +49,26 @@ public class MyApp  extends DefaultApplicationLike {
                                  Resources[] resources, ClassLoader[] classLoader, AssetManager[] assetManager) {
         super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent, resources, classLoader, assetManager);
 
+    }
+    /**
+     * install multiDex before install tinker
+     * so we don't need to put the tinker lib classes in the main dex
+     *
+     * @param base
+     */
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    @Override
+    public void onBaseContextAttached(Context base) {
+        super.onBaseContextAttached(base);
+        //you must install multiDex whatever tinker is installed!
+        MultiDex.install(base);
+        TinkerInstaller.install(this);
+        instance=getApplication();
+    }
+
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    public void registerActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback) {
+        getApplication().registerActivityLifecycleCallbacks(callback);
     }
 
     @Override
