@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.dyoung.carpool.node.activity.AddNodeActivity">
+    <item
+        android:id="@+id/search"
+        android:orderInCategory="100"
+        android:title="搜索"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/add"
+        android:orderInCategory="100"
+        android:title="添加"
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="ifRoom" />
+</menu>

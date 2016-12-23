@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_nav_bg"
+    android:showDividers="middle"
+    android:divider="@drawable/divider"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/home_add_carpool"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/popupwindow_text_selector"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:text="拼车"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/home_add_node"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/popupwindow_text_selector"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:text="记事"
+        android:textSize="17sp" />
+
+
+</LinearLayout>

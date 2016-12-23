@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@drawable/divider"
+    android:showDividers="middle"
+    android:orientation="vertical"
+    tools:context="com.dyoung.carpool.node.fragment.MineFragment">
+
+
+    <TextView
+        android:id="@+id/trip_set"
+        style="@style/mine_common_txt"
+        android:clickable="true"
+        android:text="行程设置" />
+
+    <TextView
+        android:id="@+id/trip_carpool"
+        style="@style/mine_common_txt"
+        android:text="拼车设置" />
+
+
+    <TextView
+        android:id="@+id/trip_feedbook"
+        style="@style/mine_common_txt"
+        android:text="意见反馈" />
+
+    <TextView
+        android:id="@+id/update"
+        style="@style/mine_common_txt"
+        android:text="版本更新" />
+
+
+    <TextView
+        android:id="@+id/about"
+        style="@style/mine_common_txt"
+        android:text="关于" />
+
+
+</LinearLayout>

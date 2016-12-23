@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="carNodeType">
+        <item>手机号</item>
+        <item>微信</item>
+        <item>QQ</item>
+    </string-array>
+    <string-array name="tripItems">
+        <item>涿州至北京</item>
+        <item>北京至涿州</item>
+    </string-array>
+</resources>

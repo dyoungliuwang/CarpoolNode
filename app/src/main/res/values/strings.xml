@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">拼车行</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_node">AddNodeActivity</string>
+    <string name="action_settings">添加信息</string>
+    <string name="title_activity_trip_list">TripListActivity</string>
+</resources>

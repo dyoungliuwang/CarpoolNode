@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:healthy="http://schemas.android.com/apk/res-auto">
+
+    <com.dyoung.carpool.node.view.HealthyTablesView
+        style="@style/healthyview_style"
+        healthy:tableType="heartrate" />
+
+</LinearLayout>

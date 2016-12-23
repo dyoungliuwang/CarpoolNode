@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--坐标轴线条出息-->
+    <attr name="coordinatesLineWidth" format="dimension"/>
+    <!--坐标轴字体大小-->
+    <attr name="coordinatesTextSize" format="dimension" />
+    <!--坐标轴轴字体颜色-->
+    <attr name="coordinatesTextColor" format="color" />
+    <!--折线颜色-->
+    <attr name="lineColor" format="color" />
+    <!--折线粗细-->
+    <attr name="lineWidth" format="dimension" />
+    <!--小圆点半径-->
+    <attr name="averageCircleradius" format="dimension" />
+    <!--表格的数据类型-->
+    <attr name="tableType" format="string" />
+    <!--大圆点的颜色-->
+    <attr name="maxcircleColor" format="color" />
+    <!--小圆点的颜色-->
+    <attr name="mincircleColor" format="color" />
+    <!--背景色-->
+    <attr name="bgColor" format="color" />
+
+    <declare-styleable name="HealthyTableView">
+        <attr name="coordinatesLineWidth"/>
+        <attr name="coordinatesTextSize"/>
+        <attr name="coordinatesTextColor"/>
+        <attr name="lineColor"/>
+        <attr name="lineWidth"/>
+        <attr name="averageCircleradius"/>
+        <attr name="tableType"/>
+        <attr name="maxcircleColor"/>
+        <attr name="mincircleColor"/>
+        <attr name="bgColor"/>
+    </declare-styleable>
+
+
+</resources>

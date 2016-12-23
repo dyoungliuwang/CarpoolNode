@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.dyoung.carpool.node.activity.AddCarNodeActivity">
+
+    <include layout="@layout/titlebar_home"/>
+
+    <TextView
+        android:id="@+id/date"
+        style="@style/add_node_common_view"
+        android:text="乘车日期" />
+
+    <TextView
+        android:id="@+id/trip"
+        style="@style/add_node_common_view"
+        android:text="涿州到北京" />
+
+    <TextView
+        android:id="@+id/numType"
+        android:text="手机号"
+        style="@style/add_node_common_view"/>
+
+    <EditText
+        android:id="@+id/number"
+        style="@style/add_node_common_view"
+        android:background="@android:color/transparent"
+        android:hint="请输入号码" />
+
+    <EditText
+        android:id="@+id/mark"
+        style="@style/add_node_common_view"
+        android:background="@android:color/transparent"
+        android:hint="请输入备注内容" />
+
+
+
+</LinearLayout>

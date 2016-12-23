@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.dyoung.carpool.node.fragment.AddNodeFragment">
+
+    <include layout="@layout/titlebar_home" />
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:hint="请输入标题..." />
+
+    <EditText
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:autoLink="all"
+        android:gravity="top|left"
+        android:hint="请输入内容..."
+        android:singleLine="false" />
+
+
+</LinearLayout>
