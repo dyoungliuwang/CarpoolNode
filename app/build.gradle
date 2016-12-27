@@ -4,6 +4,7 @@ apply plugin: 'org.greenrobot.greendao'
 //apply tinker插件
 apply plugin: 'com.tencent.tinker.patch'
 
+
 def gitSha() {
     try {
         String gitRev = 'git rev-parse --short HEAD'.execute(null, project.rootDir).text.trim()
@@ -17,8 +18,6 @@ def gitSha() {
 }
 
 def javaVersion = JavaVersion.VERSION_1_7
-
-
 
 android {
     compileSdkVersion 24
@@ -38,15 +37,9 @@ android {
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
-        versionName "0.1"
+        versionName "1.0.0"
         // dex突破65535的限制
         multiDexEnabled true
-        /**
-         * not like proguard, multiDexKeepProguard is not a list, so we can't just
-         * add for you in our task. you can copy tinker keep rules at
-         * build/intermediates/tinker_intermediates/tinker_multidexkeep.pro
-         */
-        multiDexKeepProguard file("keep_in_main_dex.txt")
         /**
          * buildConfig can change during patch!
          * we can use the newly value when patch
@@ -64,7 +57,10 @@ android {
 
     signingConfigs {
         debug {
-            // No debug config
+            storeFile file("../carPoolNode.jks")
+            storePassword "liuwang521"
+            keyAlias "carPoolNode"
+            keyPassword "liuwang521"
         }
 
         release {
@@ -80,9 +76,10 @@ android {
         debug{
             minifyEnabled false
             zipAlignEnabled false
-            shrinkResources false
+            shrinkResources true
             // 显示Log
             buildConfigField "boolean", "LOG_DEBUG", "true"
+            signingConfig signingConfigs.debug
         }
 
         release {
@@ -143,7 +140,8 @@ dependencies {
     //可选，用于生成application类
 //    provided('com.tencent.tinker:tinker-android-anno:1.7.5')
     //tinker的核心库
-    compile('com.tencent.tinker:tinker-android-lib:1.7.5')
+    compile("com.tencent.tinker:tinker-android-lib:${TINKER_VERSION}") { changing = true }
+    provided("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
     compile "com.android.support:multidex:1.0.1"
 
 }
@@ -163,7 +161,7 @@ def bakPath = file("${buildDir}/bakApk/")
  */
 ext {
     //for some reason, you may want to ignore tinkerBuild, such as instant run debug build?
-    tinkerEnabled =false
+    tinkerEnabled = false
 
     //for normal build
     //old apk file to build patch apk
@@ -174,7 +172,7 @@ ext {
     tinkerApplyResourcePath = "${bakPath}/app-debug-1018-17-32-47-R.txt"
 
     //only use for build all flavor, if not, just ignore this field
-    tinkerBuildFlavorDirectory = "${bakPath}/app-1223-15-43-20"
+    tinkerBuildFlavorDirectory = "${bakPath}/app-1018-17-32-47"
 }
 
 
@@ -238,6 +236,12 @@ if (buildWithTinker()) {
         useSign = true
 
         /**
+         * optional，default 'true'
+         * whether use tinker to build
+         */
+        tinkerEnable = buildWithTinker()
+
+        /**
          * Warning, applyMapping will affect the normal android build!
          */
         buildConfig {
@@ -263,6 +267,12 @@ if (buildWithTinker()) {
              * we will gen the tinkerId in your manifest automatic
              */
             tinkerId = getTinkerIdValue()
+
+            /**
+             * if keepDexApply is true, class in which dex refer to the old apk.
+             * open this can reduce the dex diff file size.
+             */
+            keepDexApply = false
         }
 
         dex {
@@ -274,20 +284,7 @@ if (buildWithTinker()) {
              * or you want to save rom or check quicker, you can use raw mode also
              */
             dexMode = "jar"
-            /**
-             * optional，default 'false'
-             * if usePreGeneratedPatchDex is true, tinker framework will generate auxiliary class
-             * and insert auxiliary instruction when compiling base package using
-             * assemble{Debug/Release} task to prevent class pre-verified issue in dvm.
-             * Besides, a real dex file contains necessary class will be generated and packed into
-             * patch package instead of any patch info files.
-             *
-             * Use this mode if you have to use any dex encryption solutions.
-             *
-             * Notice: If you change this value, please trigger clean task
-             * and regenerate base package.
-             */
-            usePreGeneratedPatchDex = false
+
             /**
              * necessary，default '[]'
              * what dexes in apk are expected to deal with tinkerPatch
@@ -304,11 +301,9 @@ if (buildWithTinker()) {
              * own tinkerLoader, and the classes you use in them
              *
              */
-            loader = ["com.tencent.tinker.loader.*",
-                      //warning, you must change it with your application
-                      "com.dyoung.carpool.node.activity.MyApp",
-                      //use sample, let BaseBuildInfo unchangeable with tinker
-                      "tinker.sample.android.app.BaseBuildInfo"
+            loader = [
+                    //use sample, let BaseBuildInfo unchangeable with tinker
+                    "tinker.sample.android.app.BaseBuildInfo"
             ]
         }
 
@@ -477,9 +472,3 @@ if (buildWithTinker()) {
         }
     }
 }
-
-
-
-
-
-
