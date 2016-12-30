@@ -43,6 +43,7 @@ public class AddCarNodeActivity extends BaseActivity<AddCarPoolPresenter> implem
     @BindView(R.id.numType) TextView numType;
     @BindView(R.id.number) EditText numberEdt;
     @BindView(R.id.mark) EditText markEdt;
+    @BindView(R.id.num) TextView numEdt;
 
     private  List<Trip> tripList=new ArrayList<Trip>();
     private  List<String> tripListStr=new ArrayList<String>();
@@ -107,14 +108,15 @@ public class AddCarNodeActivity extends BaseActivity<AddCarPoolPresenter> implem
 
              editNodeCar.__setDaoSession(DBHelper.getInstance().getDaoSession());
              currentTrip=editNodeCar.getTrip();
-             dateSelect.setText(DateUtil.formatToDay(editNodeCar.getRideTime()));
-             tripSelect.setText(currentTrip.getSetOut()+"-->"+currentTrip.getArriveCity());
-             numType.setText(editNodeCar.getNodeType().getName());
+             dateSelect.setText("发车时间:  "+DateUtil.formatToDay(editNodeCar.getRideTime()));
+             tripSelect.setText("行程区间  "+currentTrip.getSetOut()+"-->"+currentTrip.getArriveCity());
+             numType.setText("号码类型:  "+editNodeCar.getNodeType().getName());
              markEdt.setText(editNodeCar.getMark());
+             numEdt.setText(editNodeCar.getNum()+"");
              numberEdt.setText(editNodeCar.getNumber());
          }else{
              calendar=Calendar.getInstance();
-             dateSelect.setText(DateUtil.formatToDay(calendar.getTimeInMillis()));
+             dateSelect.setText("发车时间:  "+DateUtil.formatToDay(calendar.getTimeInMillis()));
          }
     }
     @Override
@@ -137,7 +139,7 @@ public class AddCarNodeActivity extends BaseActivity<AddCarPoolPresenter> implem
 
         if(editNodeCar==null){
             currentTrip=tripList.get(0);
-            tripSelect.setText(currentTrip.getSetOut() + "--" + currentTrip.getArriveCity());
+            tripSelect.setText("行程区间:  "+currentTrip.getSetOut() + "--" + currentTrip.getArriveCity());
         }
         this.tripList.addAll(tripList);
         for (Trip item:tripList){
@@ -154,7 +156,7 @@ public class AddCarNodeActivity extends BaseActivity<AddCarPoolPresenter> implem
                 @Override
                 public void onClick(int position) {
                     currentTrip = tripList.get(position);
-                    tripSelect.setText(currentTrip.getSetOut() + "--" + currentTrip.getArriveCity());
+                    tripSelect.setText("行程区间:  "+currentTrip.getSetOut() + "--" + currentTrip.getArriveCity());
                 }
             });
         }else if(view==numType){
@@ -163,7 +165,7 @@ public class AddCarNodeActivity extends BaseActivity<AddCarPoolPresenter> implem
                 @Override
                 public void onClick(int position) {
                     LogUtil.i(TAG, "position=" + position);
-                    numType.setText(getResources().getStringArray(R.array.carNodeType)[position]);
+                    numType.setText("号码类型:  "+getResources().getStringArray(R.array.carNodeType)[position]);
                 }
             });
         }
@@ -180,7 +182,7 @@ public class AddCarNodeActivity extends BaseActivity<AddCarPoolPresenter> implem
                         calendar.set(Calendar.YEAR, year);
                         calendar.set(Calendar.MONTH,monthOfYear);
                         calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-                        dateSelect.setText(DateUtil.formatToDay(calendar.getTimeInMillis()));
+                        dateSelect.setText("发车时间:  "+DateUtil.formatToDay(calendar.getTimeInMillis()));
                         timeSelect();
                     }
                 }
@@ -198,7 +200,7 @@ public class AddCarNodeActivity extends BaseActivity<AddCarPoolPresenter> implem
                 LogUtil.i(TAG,"hourOfDay="+hourOfDay+"minute="+minute);
                 calendar.set(Calendar.HOUR_OF_DAY,hourOfDay);
                 calendar.set(Calendar.MINUTE,minute);
-                dateSelect.setText(DateUtil.formatToDay(calendar.getTimeInMillis()));
+                dateSelect.setText("发车时间:  "+DateUtil.formatToDay(calendar.getTimeInMillis()));
             }
         },calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),true).show();
     }
@@ -210,19 +212,21 @@ public class AddCarNodeActivity extends BaseActivity<AddCarPoolPresenter> implem
         String numTypeStr=numType.getText().toString().trim();
         String numberStr= numberEdt.getText().toString().trim();
         String markStr=markEdt.getText().toString().trim();
+        int num=Integer.parseInt(numEdt.getText().toString().trim());
 
         if(TextUtils.isEmpty(numberStr)){
             ToastUtil.show("号码不能为空");
             return null;
         }
         CarPoolNode carNode=new CarPoolNode();
-        if(numTypeStr.equals("手机号")){
+        if(numTypeStr.contains("手机号")){
             carNode.setNodeType(NodeType.PHONE);
-        }else if(numTypeStr.equals("微信")){
+        }else if(numTypeStr.contains("微信")){
             carNode.setNodeType(NodeType.WX);
-        }else if(numTypeStr.equals("QQ")){
+        }else if(numTypeStr.contains("QQ")){
             carNode.setNodeType(NodeType.QQ);
         }
+        carNode.setNum(num);
         carNode.setTrip(currentTrip);
         carNode.setNumber(numberStr);
         carNode.setMark(markStr);

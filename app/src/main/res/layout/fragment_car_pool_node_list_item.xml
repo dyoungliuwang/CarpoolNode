@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:textSize="17dp"
-        android:textStyle="bold" />
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/item_content"
@@ -19,8 +18,18 @@
         android:layout_height="wrap_content"
         android:lineSpacingExtra="5dp"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp"
         android:paddingBottom="5dp"
+        android:paddingRight="5dp"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/item_createtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="5dp"
+        android:drawablePadding="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
         android:textSize="14dp" />
 
 </LinearLayout>

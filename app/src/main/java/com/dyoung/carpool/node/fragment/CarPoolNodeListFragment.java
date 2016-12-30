@@ -1,6 +1,7 @@
 package com.dyoung.carpool.node.fragment;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,6 +42,7 @@ public class CarPoolNodeListFragment extends BaseFragement<CarPoolPresenter> imp
     protected LinearLayoutManager mLayoutManager;
     private CommonAdapter<CarPoolNode> adapter;
     private final static int    DEFAUL_LOAD_COUNT=100;
+    private  Typeface mTypeFace;
 
     @BindView(R.id.loading)
     TextView loadingView;
@@ -66,18 +68,22 @@ public class CarPoolNodeListFragment extends BaseFragement<CarPoolPresenter> imp
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL_LIST));
+        mTypeFace=Typeface.createFromAsset(mContext.getAssets(),"fonts/impact.ttf");
 
         adapter=new CommonAdapter<CarPoolNode>(mContext,dataList,R.layout.fragment_car_pool_node_list_item) {
             @Override
             public void convert(ViewHolder holder, final CarPoolNode carPoolNode) {
-                holder.setText(R.id.item_title,carPoolNode.getTrip().getSetOut()+"--"+carPoolNode.getTrip().getArriveCity()+"  "+ DateUtil.formatToDay(carPoolNode.getRideTime()));
-                String content=carPoolNode.getNodeType().getName()+"  ";
-                content+=carPoolNode.getNumber()+"  "+(+carPoolNode.getStatus()==1?"已上车":"未上车")+"\n";
+                holder.setTextTypeface(R.id.item_title,mTypeFace );
+                holder.setText(R.id.item_title,DateUtil.formatToDay(carPoolNode.getRideTime()));
+                String content=carPoolNode.getTrip().getSetOut()+"--"+carPoolNode.getTrip().getArriveCity()+"  "+carPoolNode.getNodeType().getName()+"  ";
+                content+=carPoolNode.getNumber();
+                content+="\n"+"备注:"+carPoolNode.getNum()+"人 ";
                 if(!TextUtils.isEmpty(carPoolNode.getMark())){
-                    content+="备注:"+carPoolNode.getMark()+"\n";
+                    content+=carPoolNode.getMark();
                 }
-                content+=DateUtil.formatWholeDate(carPoolNode.getDate());
                 holder.setText(R.id.item_content,content);
+                holder.setText(R.id.item_createtime,DateUtil.formatToDay(carPoolNode.getDate()));
+                holder.setTextViewRightDrawable(R.id.item_createtime,carPoolNode.getStatus()==1?R.drawable.carpool_up:R.drawable.carpool_down);
                 holder.setOnItemClick(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -91,6 +97,7 @@ public class CarPoolNodeListFragment extends BaseFragement<CarPoolPresenter> imp
                         return true;
                     }
                 });
+
 
             }
         };

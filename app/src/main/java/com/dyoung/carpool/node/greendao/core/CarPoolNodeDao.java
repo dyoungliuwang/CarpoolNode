@@ -36,11 +36,12 @@ public class CarPoolNodeDao extends AbstractDao<CarPoolNode, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property TripId = new Property(1, Long.class, "tripId", false, "TRIP_ID");
         public final static Property Status = new Property(2, Integer.class, "status", false, "STATUS");
-        public final static Property NodeType = new Property(3, String.class, "nodeType", false, "NODE_TYPE");
-        public final static Property Number = new Property(4, String.class, "number", false, "NUMBER");
-        public final static Property Mark = new Property(5, String.class, "mark", false, "MARK");
-        public final static Property Date = new Property(6, Long.class, "date", false, "DATE");
-        public final static Property RideTime = new Property(7, Long.class, "rideTime", false, "RIDE_TIME");
+        public final static Property Num = new Property(3, Integer.class, "num", false, "NUM");
+        public final static Property NodeType = new Property(4, String.class, "nodeType", false, "NODE_TYPE");
+        public final static Property Number = new Property(5, String.class, "number", false, "NUMBER");
+        public final static Property Mark = new Property(6, String.class, "mark", false, "MARK");
+        public final static Property Date = new Property(7, Long.class, "date", false, "DATE");
+        public final static Property RideTime = new Property(8, Long.class, "rideTime", false, "RIDE_TIME");
     }
 
     private DaoSession daoSession;
@@ -64,11 +65,12 @@ public class CarPoolNodeDao extends AbstractDao<CarPoolNode, Long> {
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"TRIP_ID\" INTEGER," + // 1: tripId
                 "\"STATUS\" INTEGER," + // 2: status
-                "\"NODE_TYPE\" TEXT," + // 3: nodeType
-                "\"NUMBER\" TEXT NOT NULL ," + // 4: number
-                "\"MARK\" TEXT," + // 5: mark
-                "\"DATE\" INTEGER," + // 6: date
-                "\"RIDE_TIME\" INTEGER);"); // 7: rideTime
+                "\"NUM\" INTEGER," + // 3: num
+                "\"NODE_TYPE\" TEXT," + // 4: nodeType
+                "\"NUMBER\" TEXT NOT NULL ," + // 5: number
+                "\"MARK\" TEXT," + // 6: mark
+                "\"DATE\" INTEGER," + // 7: date
+                "\"RIDE_TIME\" INTEGER);"); // 8: rideTime
     }
 
     /** Drops the underlying database table. */
@@ -96,25 +98,30 @@ public class CarPoolNodeDao extends AbstractDao<CarPoolNode, Long> {
             stmt.bindLong(3, status);
         }
  
+        Integer num = entity.getNum();
+        if (num != null) {
+            stmt.bindLong(4, num);
+        }
+ 
         NodeType nodeType = entity.getNodeType();
         if (nodeType != null) {
-            stmt.bindString(4, nodeTypeConverter.convertToDatabaseValue(nodeType));
+            stmt.bindString(5, nodeTypeConverter.convertToDatabaseValue(nodeType));
         }
-        stmt.bindString(5, entity.getNumber());
+        stmt.bindString(6, entity.getNumber());
  
         String mark = entity.getMark();
         if (mark != null) {
-            stmt.bindString(6, mark);
+            stmt.bindString(7, mark);
         }
  
         Long date = entity.getDate();
         if (date != null) {
-            stmt.bindLong(7, date);
+            stmt.bindLong(8, date);
         }
  
         Long rideTime = entity.getRideTime();
         if (rideTime != null) {
-            stmt.bindLong(8, rideTime);
+            stmt.bindLong(9, rideTime);
         }
     }
 
@@ -137,25 +144,30 @@ public class CarPoolNodeDao extends AbstractDao<CarPoolNode, Long> {
             stmt.bindLong(3, status);
         }
  
+        Integer num = entity.getNum();
+        if (num != null) {
+            stmt.bindLong(4, num);
+        }
+ 
         NodeType nodeType = entity.getNodeType();
         if (nodeType != null) {
-            stmt.bindString(4, nodeTypeConverter.convertToDatabaseValue(nodeType));
+            stmt.bindString(5, nodeTypeConverter.convertToDatabaseValue(nodeType));
         }
-        stmt.bindString(5, entity.getNumber());
+        stmt.bindString(6, entity.getNumber());
  
         String mark = entity.getMark();
         if (mark != null) {
-            stmt.bindString(6, mark);
+            stmt.bindString(7, mark);
         }
  
         Long date = entity.getDate();
         if (date != null) {
-            stmt.bindLong(7, date);
+            stmt.bindLong(8, date);
         }
  
         Long rideTime = entity.getRideTime();
         if (rideTime != null) {
-            stmt.bindLong(8, rideTime);
+            stmt.bindLong(9, rideTime);
         }
     }
 
@@ -176,11 +188,12 @@ public class CarPoolNodeDao extends AbstractDao<CarPoolNode, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // tripId
             cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2), // status
-            cursor.isNull(offset + 3) ? null : nodeTypeConverter.convertToEntityProperty(cursor.getString(offset + 3)), // nodeType
-            cursor.getString(offset + 4), // number
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // mark
-            cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6), // date
-            cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7) // rideTime
+            cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3), // num
+            cursor.isNull(offset + 4) ? null : nodeTypeConverter.convertToEntityProperty(cursor.getString(offset + 4)), // nodeType
+            cursor.getString(offset + 5), // number
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // mark
+            cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7), // date
+            cursor.isNull(offset + 8) ? null : cursor.getLong(offset + 8) // rideTime
         );
         return entity;
     }
@@ -190,11 +203,12 @@ public class CarPoolNodeDao extends AbstractDao<CarPoolNode, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setTripId(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
         entity.setStatus(cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2));
-        entity.setNodeType(cursor.isNull(offset + 3) ? null : nodeTypeConverter.convertToEntityProperty(cursor.getString(offset + 3)));
-        entity.setNumber(cursor.getString(offset + 4));
-        entity.setMark(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setDate(cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6));
-        entity.setRideTime(cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7));
+        entity.setNum(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
+        entity.setNodeType(cursor.isNull(offset + 4) ? null : nodeTypeConverter.convertToEntityProperty(cursor.getString(offset + 4)));
+        entity.setNumber(cursor.getString(offset + 5));
+        entity.setMark(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setDate(cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7));
+        entity.setRideTime(cursor.isNull(offset + 8) ? null : cursor.getLong(offset + 8));
      }
     
     @Override

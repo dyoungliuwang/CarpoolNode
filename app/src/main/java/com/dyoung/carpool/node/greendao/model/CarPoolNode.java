@@ -3,17 +3,17 @@ package com.dyoung.carpool.node.greendao.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import org.greenrobot.greendao.annotation.Convert;
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.NotNull;
-import org.greenrobot.greendao.annotation.OrderBy;
-import org.greenrobot.greendao.annotation.ToOne;
-import org.greenrobot.greendao.DaoException;
+import com.dyoung.carpool.node.greendao.core.CarPoolNodeDao;
 import com.dyoung.carpool.node.greendao.core.DaoSession;
 import com.dyoung.carpool.node.greendao.core.TripDao;
-import com.dyoung.carpool.node.greendao.core.CarPoolNodeDao;
+
+import org.greenrobot.greendao.DaoException;
+import org.greenrobot.greendao.annotation.Convert;
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.NotNull;
+import org.greenrobot.greendao.annotation.ToOne;
 
 /**
  * Created by admin on 2016/11/16.
@@ -26,12 +26,15 @@ public class CarPoolNode implements Parcelable {
     private Long tripId;
     //拼车状态 1已上车，0：未上车
     private  Integer status;
+    //人数
+    private  Integer num;
     @Convert(converter = NoteTypeConverter.class, columnType = String.class)
     private NodeType nodeType;
     @NotNull
     private String number;
     private String mark;
     private Long date;
+    //发车时间
     private Long rideTime;
     @ToOne(joinProperty = "tripId")
     private Trip trip;
@@ -47,6 +50,7 @@ public class CarPoolNode implements Parcelable {
         dest.writeValue(this.id);
         dest.writeValue(this.tripId);
         dest.writeValue(this.status);
+        dest.writeValue(this.num);
         dest.writeInt(this.nodeType == null ? -1 : this.nodeType.ordinal());
         dest.writeString(this.number);
         dest.writeString(this.mark);
@@ -77,6 +81,14 @@ public class CarPoolNode implements Parcelable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getNum() {
+        return this.num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
     }
 
     public NodeType getNodeType() {
@@ -198,6 +210,7 @@ public class CarPoolNode implements Parcelable {
         this.id = (Long) in.readValue(Long.class.getClassLoader());
         this.tripId = (Long) in.readValue(Long.class.getClassLoader());
         this.status = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.num = (Integer) in.readValue(Integer.class.getClassLoader());
         int tmpNodeType = in.readInt();
         this.nodeType = tmpNodeType == -1 ? null : NodeType.values()[tmpNodeType];
         this.number = in.readString();
@@ -207,12 +220,14 @@ public class CarPoolNode implements Parcelable {
         this.trip = in.readParcelable(Trip.class.getClassLoader());
     }
 
-    @Generated(hash = 341676452)
-    public CarPoolNode(Long id, Long tripId, Integer status, NodeType nodeType,
-            @NotNull String number, String mark, Long date, Long rideTime) {
+    @Generated(hash = 1291834657)
+    public CarPoolNode(Long id, Long tripId, Integer status, Integer num,
+            NodeType nodeType, @NotNull String number, String mark, Long date,
+            Long rideTime) {
         this.id = id;
         this.tripId = tripId;
         this.status = status;
+        this.num = num;
         this.nodeType = nodeType;
         this.number = number;
         this.mark = mark;

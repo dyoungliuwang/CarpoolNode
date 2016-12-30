@@ -2,7 +2,6 @@ package com.dyoung.carpool.node.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -10,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dyoung.carpool.node.R;
@@ -19,7 +20,6 @@ import com.dyoung.carpool.node.fragment.MineFragment;
 import com.dyoung.carpool.node.fragment.NodeListFragment;
 import com.dyoung.carpool.node.util.ToastUtil;
 import com.dyoung.carpool.node.view.CommonPopupWindow;
-import com.tencent.tinker.lib.tinker.TinkerInstaller;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -40,10 +40,18 @@ public class MainActivity extends BaseActivity {
     private  long lastBackTime;
 
     @BindView(R.id.container) ViewPager mViewPager;
+    @BindView(R.id.navigation_carpool_icon) ImageView carPoolImg;
+    @BindView(R.id.navigation_carpool_txt) TextView carPoolTxt;
+    @BindView(R.id.navigation_carpool_layout)   LinearLayout carPoolLayout;
 
-    @BindView(R.id.navigation_carpool) TextView carPoolTxt;
-    @BindView(R.id.navigation_node) TextView nodeTxt;
-    @BindView(R.id.navigation_mine) TextView mineTxt;
+    @BindView(R.id.navigation_node_icon) ImageView nodeImg;
+    @BindView(R.id.navigation_node_txt) TextView nodeTxt;
+    @BindView(R.id.navigation_node_layout)   LinearLayout nodeLayout;
+
+    @BindView(R.id.navigation_mine_icon) ImageView mineImg;
+    @BindView(R.id.navigation_mine_txt) TextView mineTxt;
+    @BindView(R.id.navigation_mine_layout)   LinearLayout mineLayout;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -87,10 +95,10 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.search:
-                        TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed_7zip.apk");
-                        ToastUtil.show("load success");
-                        break;
+//                    case R.id.search:
+//                        TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed_7zip.apk");
+//                        ToastUtil.show("load success");
+//                        break;
                     case R.id.add:
                         showPopupWindow(toolbar);
                         break;
@@ -106,13 +114,13 @@ public class MainActivity extends BaseActivity {
             public void onPageSelected(int position) {
                 switch (position){
                     case 0:
-                        recoverTxtColor(carPoolTxt);
+                        recoverTxtColor(carPoolImg,carPoolTxt);
                         break;
                     case 1:
-                        recoverTxtColor(nodeTxt);
+                        recoverTxtColor(nodeImg,nodeTxt);
                         break;
                     case 2:
-                        recoverTxtColor(mineTxt);
+                        recoverTxtColor(mineImg,mineTxt);
                         break;
                 }
             }
@@ -120,7 +128,7 @@ public class MainActivity extends BaseActivity {
             public void onPageScrollStateChanged(int state) {}
         });
 
-        recoverTxtColor(carPoolTxt);
+        recoverTxtColor(carPoolImg,carPoolTxt);
         mViewPager.setOffscreenPageLimit(2);
         fragmentList.add(new CarPoolNodeListFragment());
         fragmentList.add(new NodeListFragment());
@@ -153,27 +161,33 @@ public class MainActivity extends BaseActivity {
 
 
     /**
-     * 设置选中时的字体颜色
+     * 设置选中时的状态
+     * @param currentImg
      * @param currentTxt
      */
-    private  void recoverTxtColor(TextView currentTxt){
+    private  void recoverTxtColor(ImageView currentImg,TextView currentTxt){
+        carPoolImg.setSelected(false);
+        mineImg.setSelected(false);
+        nodeImg.setSelected(false);
+
         carPoolTxt.setSelected(false);
         nodeTxt.setSelected(false);
         mineTxt.setSelected(false);
 
+        currentImg.setSelected(true);
         currentTxt.setSelected(true);
     }
-    @OnClick({R.id.navigation_carpool,R.id.navigation_node,R.id.navigation_mine})
+    @OnClick({R.id.navigation_carpool_layout,R.id.navigation_node_layout,R.id.navigation_mine_layout})
     public void onViewClick(View view) {
-        if(view==carPoolTxt){
+        if(view==carPoolLayout){
             mViewPager.setCurrentItem(0,false);
-            recoverTxtColor(carPoolTxt);
-        }else if(view==nodeTxt){
+            recoverTxtColor(carPoolImg,carPoolTxt);
+        }else if(view==nodeLayout){
             mViewPager.setCurrentItem(1,false);
-            recoverTxtColor(nodeTxt);
-        }else if(view==mineTxt){
+            recoverTxtColor(nodeImg,nodeTxt);
+        }else if(view==mineLayout){
             mViewPager.setCurrentItem(2,false);
-            recoverTxtColor(mineTxt);
+            recoverTxtColor(mineImg,mineTxt);
         }/*else if(view== addCarNode){
 
         }*/

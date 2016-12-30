@@ -3,38 +3,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:divider="@drawable/divider"
     android:orientation="vertical"
+    android:showDividers="middle"
     tools:context="com.dyoung.carpool.node.activity.AddCarNodeActivity">
 
-    <include layout="@layout/titlebar_home"/>
-
-    <TextView
-        android:id="@+id/date"
-        style="@style/add_node_common_view"
-        android:text="乘车日期" />
+    <include layout="@layout/titlebar_home" />
 
     <TextView
         android:id="@+id/trip"
         style="@style/add_node_common_view"
-        android:text="涿州到北京" />
+        android:drawableRight="@drawable/arrow_right"
+        android:text="行程区间:" />
+
+    <TextView
+        android:id="@+id/date"
+        style="@style/add_node_common_view"
+        android:drawableRight="@drawable/arrow_right"
+        android:text="发车时间:" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
 
     <TextView
         android:id="@+id/numType"
-        android:text="手机号"
-        style="@style/add_node_common_view"/>
+        style="@style/add_node_common_view"
+        android:text="号码类型: 手机号" />
 
     <EditText
         android:id="@+id/number"
         style="@style/add_node_common_view"
-        android:background="@android:color/transparent"
         android:hint="请输入号码" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/add_node_common_view"
+            android:layout_weight="1"
+            android:text="席位" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/carpool_minus_selector" />
+
+        <TextView
+            android:id="@+id/num"
+            android:layout_width="30dp"
+            android:gravity="center"
+            android:text="1"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/carpool_add_selector" />
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/mark"
         style="@style/add_node_common_view"
-        android:background="@android:color/transparent"
         android:hint="请输入备注内容" />
-
 
 
 </LinearLayout>

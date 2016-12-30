@@ -22,7 +22,7 @@ public class DateUtil {
     public static  String formatToDay(Long currentTime){
         Date date=new Date();
         date.setTime(currentTime);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日   HH:mm");
         return sdf.format(date);
     }
 

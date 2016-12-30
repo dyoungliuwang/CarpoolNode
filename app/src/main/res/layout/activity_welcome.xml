@@ -7,6 +7,7 @@
     <ImageView
         android:id="@+id/welcome_bg"
         android:layout_width="match_parent"
+        android:background="@drawable/welcome"
         android:layout_height="match_parent" />
 
 

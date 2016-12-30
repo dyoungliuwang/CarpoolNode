@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--主题颜色-->
-    <color name="colorPrimary">#2e8abb</color>
-    <color name="colorPrimaryDark">#3A5FCD</color>
+    <color name="colorPrimary">#20a806</color>
+    <color name="colorPrimaryDark">#20a806</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="windowbg">#F1EAEC</color>
 
     <color name="transparent">#00000000</color>
-    <color name="home_nav_bg">#dddddd</color>
-    <color name="home_nav_txt_color_normal">#333333</color>
-    <color name="home_nav_txt_color_pressed">@android:color/holo_orange_light</color>
+    <color name="home_nav_bg">#F1EAEC</color>
+    <color name="home_nav_txt_color_normal">#000000</color>
+    <color name="home_nav_txt_color_pressed">#20a806</color>
     <!--textview背景颜色-->
     <color name="textview_bg_normal">#FFFFFF</color>
     <color name="textview_bg_pressed">#DCDCDC</color>

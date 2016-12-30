@@ -10,13 +10,10 @@
 
     <!--首页导航栏下边的导航按钮-->
     <style name="home_nav_item_style">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:drawablePadding">2dp</item>
-        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">25dp</item>
         <item name="android:textSize">12dp</item>
-        <item name="android:textColor">@color/home_nav_txt_color_selector</item>
+        <item name="android:layout_weight">1</item>
     </style>
 
     <style name="add_node_common_view">
@@ -26,7 +23,7 @@
         <item name="android:textSize">18sp</item>
         <item name="android:paddingLeft">8dp</item>
         <item name="android:paddingRight">8dp</item>
-        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/textview_selector</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -44,9 +41,10 @@
     </style>
 
     <style name="mine_common_txt">
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
         <item name="android:layout_width">match_parent</item>
+        <item name="android:drawablePadding">8dp</item>
         <item name="android:layout_height">50dp</item>
         <item name="android:background">@drawable/textview_selector</item>
         <item name="android:textSize">16dp</item>

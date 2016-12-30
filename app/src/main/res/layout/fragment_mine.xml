@@ -12,28 +12,36 @@
         android:id="@+id/trip_set"
         style="@style/mine_common_txt"
         android:clickable="true"
+        android:drawableLeft="@drawable/mine_trip_setting"
         android:text="行程设置" />
 
     <TextView
         android:id="@+id/trip_carpool"
         style="@style/mine_common_txt"
+        android:drawableLeft="@drawable/mine_carpool_setting"
         android:text="拼车设置" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
 
 
     <TextView
         android:id="@+id/trip_feedbook"
         style="@style/mine_common_txt"
+        android:drawableLeft="@drawable/mine_feedbook"
         android:text="意见反馈" />
 
     <TextView
         android:id="@+id/update"
         style="@style/mine_common_txt"
+        android:drawableLeft="@drawable/mine_update"
         android:text="版本更新" />
 
 
     <TextView
         android:id="@+id/about"
         style="@style/mine_common_txt"
+        android:drawableLeft="@drawable/mine_about"
         android:text="关于" />
 
 

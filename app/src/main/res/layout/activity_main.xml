@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/windowbg"
     android:orientation="vertical">
 
     <include layout="@layout/titlebar_home"></include>
@@ -13,6 +14,10 @@
         android:layout_weight="1">
 
     </android.support.v4.view.ViewPager>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#7c7c7c"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,22 +26,80 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/navigation_carpool"
-            style="@style/home_nav_item_style"
-            android:drawableTop="@drawable/home_temp"
-            android:text="拼车" />
+        <LinearLayout
+            android:id="@+id/navigation_carpool_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="3dp">
 
-        <TextView
-            android:id="@+id/navigation_node"
-            style="@style/home_nav_item_style"
-            android:drawableTop="@drawable/home_node"
-            android:text="记事"/>
+            <ImageView
+                android:id="@+id/navigation_carpool_icon"
+                style="@style/home_nav_item_style"
+                android:src="@drawable/home_nav_carpool_selector" />
 
-        <TextView
-            android:id="@+id/navigation_mine"
-            style="@style/home_nav_item_style"
-            android:drawableTop="@drawable/home_temp"
-            android:text="我" />
+            <TextView
+                android:id="@+id/navigation_carpool_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="拼车"
+                android:textColor="@color/home_nav_txt_color_selector"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navigation_node_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <ImageView
+                android:id="@+id/navigation_node_icon"
+                style="@style/home_nav_item_style"
+                android:src="@drawable/home_nav_node_selector" />
+
+            <TextView
+                android:id="@+id/navigation_node_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="记事"
+                android:textColor="@color/home_nav_txt_color_selector"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navigation_mine_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <ImageView
+                android:id="@+id/navigation_mine_icon"
+                style="@style/home_nav_item_style"
+                android:src="@drawable/home_nav_mine_selector" />
+
+            <TextView
+                android:id="@+id/navigation_mine_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="我"
+                android:textColor="@color/home_nav_txt_color_selector"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>

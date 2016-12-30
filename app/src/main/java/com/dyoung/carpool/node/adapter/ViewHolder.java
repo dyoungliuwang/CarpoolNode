@@ -1,6 +1,7 @@
 package com.dyoung.carpool.node.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -27,6 +28,19 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         return  holder;
     }
 
+    /**
+     * 设置字体
+     * @param viewId
+     * @param typeFace
+     * @return
+     */
+    public ViewHolder setTextTypeface(int viewId,Typeface typeFace){
+        TextView textView=getView(viewId);
+        if( !textView.getTypeface().equals(typeFace)){
+            textView.setTypeface(typeFace);
+        }
+        return  this;
+    }
     public ViewHolder setText(int viewId,String text){
         TextView textView=getView(viewId);
         textView.setText(text);
@@ -39,6 +53,11 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     }
     public ViewHolder setOnItemLongClick(View.OnLongClickListener listener){
         mView.setOnLongClickListener(listener);
+        return  this;
+    }
+    public ViewHolder setTextViewRightDrawable(int viewId,int drawId){
+        TextView view =getView(viewId);
+        view.setCompoundDrawablesWithIntrinsicBounds(null,null,view.getContext().getResources().getDrawable(drawId),null);
         return  this;
     }
 

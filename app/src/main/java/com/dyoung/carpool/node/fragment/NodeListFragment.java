@@ -20,7 +20,6 @@ import com.dyoung.carpool.node.presenter.NodeListPresenter;
 import com.dyoung.carpool.node.util.DateUtil;
 import com.dyoung.carpool.node.util.LogUtil;
 import com.dyoung.carpool.node.view.CommonListDialog;
-import com.dyoung.carpool.node.view.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -61,14 +60,14 @@ public class NodeListFragment extends BaseFragement<NodeListPresenter> implement
         mLayoutManager = new LinearLayoutManager(mContext);
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL_LIST));
+//        recyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL_LIST));
 
         adapter=new CommonAdapter<Node>(mContext,dataList,R.layout.fragment_node_list_item) {
             @Override
             public void convert(ViewHolder holder, final Node node) {
                 holder.setText(R.id.item_title,node.getTitle());
                 holder.setText(R.id.item_content,node.getContent());
-                holder.setText(R.id.item_date,DateUtil.formatWholeDate(node.getDate()));
+                holder.setText(R.id.item_date,DateUtil.formatToDay(node.getDate()));
                 holder.setOnItemClick(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
