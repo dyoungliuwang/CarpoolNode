@@ -78,7 +78,7 @@ public class MyApp  extends DefaultApplicationLike {
         //初始化greenDao
         DBHelper.getInstance().init(getApplication());
 //        initMiPush();
-        initUmengPush();
+//        initUmengPush();
         //初始化logger
         initLogger();
         //初始化内存分析工具

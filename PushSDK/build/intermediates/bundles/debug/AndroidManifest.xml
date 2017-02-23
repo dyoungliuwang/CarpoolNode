@@ -6,8 +6,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="22" />
+        android:minSdkVersion="11"
+        android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -65,6 +65,7 @@
         </receiver>
         <receiver
             android:name="com.taobao.accs.ServiceReceiver"
+            android:exported="false"
             android:process=":channel" >
             <intent-filter>
                 <action android:name="com.taobao.accs.intent.action.COMMAND" />
@@ -87,7 +88,8 @@
         </service>
         <service
             android:name="com.umeng.message.UmengIntentService"
-            android:exported="true" >
+            android:exported="true"
+            android:process=":channel" >
             <intent-filter>
                 <action android:name="org.agoo.android.intent.action.RECEIVE" />
             </intent-filter>

@@ -30,5 +30,11 @@ public class CarPoolNodeBiz extends  BaseDaoBiz<CarPoolNode> {
     }
 
 
+    public List<CarPoolNode> queryCarNodeListByTripId(Long tripId){
+        QueryBuilder<CarPoolNode> qb = getDao().queryBuilder();
+        qb.where(CarPoolNodeDao.Properties.TripId.eq(tripId));
+        return qb.list();
+    }
+
 
 }

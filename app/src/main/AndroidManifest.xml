@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dyoung.carpool.node" >
+    package="com.dyoung.carpool.node">
 
     <!-- 小米推送权限  start -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -25,24 +25,23 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".activity.WelcomeActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity" >
-        </activity>
-        <activity android:name=".activity.AddCarNodeActivity" >
-        </activity>
-        <activity android:name=".activity.BaseActivity" >
-        </activity>
-        <activity android:name=".activity.HealthyActivity" >
-        </activity>
-
-
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.AddCarNodeActivity" />
+        <activity android:name=".activity.BaseActivity" />
+        <activity android:name=".activity.HealthyActivity" />
+        <activity android:name=".activity.AddNodeActivity"/>
+        <activity  android:name=".activity.TripListActivity" />
+        <activity android:name=".activity.AddTripActivity" />
+        <activity android:name=".activity.FeedBookActivity" />
+        <activity android:name=".activity.AboutActivity"/>
         <!-- 小米推送用的服务start -->
 
         <service
@@ -66,7 +65,7 @@
         <!-- 注：此service必须在2.2.5版本以后（包括2.2.5版本）加入 -->
         <receiver
             android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
 
@@ -76,7 +75,7 @@
         <receiver
             android:name="com.xiaomi.push.service.receivers.PingReceiver"
             android:exported="false"
-            android:process=":pushservice" >
+            android:process=":pushservice">
             <intent-filter>
                 <action android:name="com.xiaomi.push.PING_TIMER" />
             </intent-filter>
@@ -88,7 +87,7 @@
         <!-- 用于接收小米推送的广播 -->
         <receiver
             android:name=".receiver.MiPushMessageReceiver"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
             </intent-filter>
@@ -100,11 +99,7 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".activity.AddNodeActivity"
-            android:label="@string/title_activity_add_node"
-            android:theme="@style/AppTheme" >
-        </activity>
+
 
         <!-- 友盟统计 -->
         <meta-data
@@ -114,18 +109,16 @@
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
         <!-- 友盟推送 -->
-<!--        <meta-data
+        <!--
+            <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5839422765b6d64cc80018ea" />-->
+            android:value="5839422765b6d64cc80018ea" />
+        -->
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
             android:value="167cc465973c280bf8524c18b3c4625f" />
 
-        <activity
-            android:name=".activity.TripListActivity"
-            android:label="@string/title_activity_trip_list"
-            android:theme="@style/AppTheme" >
-        </activity>
+
     </application>
 
 </manifest>

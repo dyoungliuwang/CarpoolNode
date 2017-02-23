@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import com.dyoung.carpool.node.R;
 import com.dyoung.carpool.node.presenter.BasePresenter;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.message.PushAgent;
 
 import butterknife.BindView;
 
@@ -25,7 +24,8 @@ public  class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         TAG=getClass().getSimpleName();
-        PushAgent.getInstance(this).onAppStart();
+//        PushAgent.getInstance(this).onAppStart();
+
     }
 
     @Override

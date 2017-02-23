@@ -195,6 +195,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         long currentTime=System.currentTimeMillis();
         if((currentTime-lastBackTime)>2000){
             lastBackTime=System.currentTimeMillis();

@@ -1,8 +1,7 @@
 package com.dyoung.carpool.node.greendao.service;
 
 import com.dyoung.carpool.node.greendao.DBHelper;
-import com.dyoung.carpool.node.greendao.core.CarPoolNodeDao;
-import com.dyoung.carpool.node.greendao.model.CarPoolNode;
+import com.dyoung.carpool.node.greendao.core.TripDao;
 import com.dyoung.carpool.node.greendao.model.Trip;
 
 import org.greenrobot.greendao.AbstractDao;
@@ -20,6 +19,16 @@ public class TripNodeBiz extends  BaseDaoBiz<Trip> {
     }
 
 
+    /**
+     * 查询数据列表
+     * @return
+     */
+    public List<Trip>  queryAllData(){
+        AbstractDao dao= getDao();
+        QueryBuilder<Trip> qb = dao.queryBuilder().orderDesc(TripDao.Properties.Id);
+        List<Trip> list = qb.list();
+        return list;
+    }
 
 
 }

@@ -10,7 +10,6 @@ def javaVersion = JavaVersion.VERSION_1_7
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
-
     compileOptions {
         sourceCompatibility javaVersion
         targetCompatibility javaVersion
@@ -50,7 +49,6 @@ android {
             keyAlias "carPoolNode"
             keyPassword "liuwang521"
         }
-
         release {
             storeFile file("../carPoolNode.jks")
             storePassword "liuwang521"
@@ -98,11 +96,11 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-
+    compile project(':PushSDK')
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support:recyclerview-v7:24.0.0'
     compile 'com.android.support:design:24.0.0'
-
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     //BufferKnife
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.jakewharton:butterknife:8.4.0'
@@ -111,17 +109,15 @@ dependencies {
     compile 'net.zetetic:android-database-sqlcipher:3.5.1'
     //eventBus
     compile 'org.greenrobot:eventbus:3.0.0'
-
     //小米
     compile files('libs/MiPush_SDK_Client_3_1_2.jar')
 
     //rxjava
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'io.reactivex:rxandroid:1.2.1'
+
     //友盟统计
     compile 'com.umeng.analytics:analytics:latest.integration'
-    //友盟推送
-    compile project(':PushSDK')
     // logger
     compile 'com.orhanobut:logger:1.15'
 
@@ -131,6 +127,7 @@ dependencies {
     compile("com.tencent.tinker:tinker-android-lib:${TINKER_VERSION}") { changing = true }
     provided("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
     compile "com.android.support:multidex:1.0.1"
+
 
 }
 greendao {

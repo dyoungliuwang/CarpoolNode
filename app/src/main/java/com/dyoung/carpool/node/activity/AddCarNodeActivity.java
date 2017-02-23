@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -44,6 +45,9 @@ public class AddCarNodeActivity extends BaseActivity<AddCarPoolPresenter> implem
     @BindView(R.id.number) EditText numberEdt;
     @BindView(R.id.mark) EditText markEdt;
     @BindView(R.id.num) TextView numEdt;
+
+    @BindView(R.id.minus) ImageView minusImg;
+    @BindView(R.id.plus) ImageView plusImg;
 
     private  List<Trip> tripList=new ArrayList<Trip>();
     private  List<String> tripListStr=new ArrayList<String>();
@@ -147,7 +151,7 @@ public class AddCarNodeActivity extends BaseActivity<AddCarPoolPresenter> implem
         }
     }
 
-    @OnClick({R.id.date,R.id.trip,R.id.numType})
+    @OnClick({R.id.date,R.id.trip,R.id.numType,R.id.minus,R.id.plus})
     public void viewOnClick(View view) {
         if(view==dateSelect){
             dateSelect();
@@ -168,6 +172,13 @@ public class AddCarNodeActivity extends BaseActivity<AddCarPoolPresenter> implem
                     numType.setText("号码类型:  "+getResources().getStringArray(R.array.carNodeType)[position]);
                 }
             });
+        }else if(view==minusImg){
+            int num=Integer.parseInt(numEdt.getText().toString());
+            numEdt.setText(--num+"");
+        }else if(view==plusImg){
+            int num=Integer.parseInt(numEdt.getText().toString());
+            numEdt.setText(++num+"");
+
         }
     }
 

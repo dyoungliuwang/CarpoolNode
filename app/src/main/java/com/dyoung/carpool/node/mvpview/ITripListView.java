@@ -10,5 +10,7 @@ import java.util.List;
 public interface ITripListView {
     void setTripList(List<Trip> list);
     void getTripListFailed();
+    void success();
+    void failed(String errorCode);
 
 }

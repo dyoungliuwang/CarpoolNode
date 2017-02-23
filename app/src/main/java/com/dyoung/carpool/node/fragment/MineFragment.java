@@ -1,18 +1,16 @@
 package com.dyoung.carpool.node.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dyoung.carpool.node.R;
+import com.dyoung.carpool.node.activity.AboutActivity;
+import com.dyoung.carpool.node.activity.FeedBookActivity;
 import com.dyoung.carpool.node.activity.TripListActivity;
-import com.dyoung.carpool.node.presenter.BasePresenter;
 import com.dyoung.carpool.node.util.LogUtil;
 
 import butterknife.BindView;
@@ -52,6 +50,12 @@ public class MineFragment extends BaseFragement {
         LogUtil.i(TAG,"onCLick: view="+view);
         if(view==tripSet){
             Intent intent=new Intent(mContext,TripListActivity.class);
+            startActivity(intent);
+        }else if(view==feedBookSet){
+            Intent intent=new Intent(mContext,FeedBookActivity.class);
+            startActivity(intent);
+        }else if(view==aboutSet){
+            Intent intent=new Intent(mContext,AboutActivity.class);
             startActivity(intent);
         }
     }
